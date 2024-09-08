@@ -3,35 +3,79 @@
   import { Link } from 'react-scroll';
   import { Shield, Users, Server, Clock, Lock, Code, Cloud, Database, Sun, Moon, MapPin, Phone, Mail, Facebook, Twitter, Linkedin } from 'lucide-react';
   import { X } from 'lucide-react';
+  import { Menu} from 'lucide-react';
   const ThemeToggle = ({ isDark, toggleTheme }) => (
     <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-200 dark:bg-gray-700">
       {isDark ? <Sun className="text-yellow-400" /> : <Moon className="text-gray-700" />}
     </button>
   );
-const Header = ({ isDark, toggleTheme }) => (
-  <header className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white p-4 sticky top-0 z-50 shadow-md">
-    <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-      <div className="flex items-center mb-4 md:mb-0">
-        <img src="/path/to/your/logo.png" alt="Forest Consulting Group Logo" className="h-8 w-auto mr-2" />
-        <h1 className="text-xl md:text-2xl font-bold">Forest Consulting Group</h1>
-      </div>
-      <nav className="flex flex-wrap justify-center items-center space-x-2 md:space-x-4">
-        <Link to="inicio" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer text-sm md:text-base">Inicio</Link>
-        <Link to="quienes-somos" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer text-sm md:text-base">Quiénes Somos</Link>
-        <Link to="servicios" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer text-sm md:text-base">Servicios</Link>
-        <Link to="hitos" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer text-sm md:text-base">Hitos</Link>
-        <Link to="expertos" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer text-sm md:text-base">Expertos</Link>
-        <Link to="contacto" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer text-sm md:text-base">Contacto</Link>
-        <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
-      </nav>
-    </div>
-  </header>
-);   const Hero = () => (
+  const Header = ({ isDark, toggleTheme }) => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  
+    const menuItems = [
+      { to: "inicio", label: "Inicio" },
+      { to: "quienes-somos", label: "Quiénes Somos" },
+      { to: "servicios", label: "Servicios" },
+      { to: "hitos", label: "Hitos" },
+      { to: "expertos", label: "Expertos" },
+      { to: "contacto", label: "Contacto" },
+    ];
+  
+    return (
+      <header className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white p-4 sticky top-0 z-50 shadow-md">
+        <div className="container mx-auto flex justify-between items-center">
+          <div className="flex items-center">
+            <img src="/lg2.png" alt="Forest Consulting Group Logo" className="h-16 w-auto mr-2" />
+            <h1 className="text-2xl font-bold text-green-800 dark:text-green-500">Forest Consulting Group</h1>
+          </div>
+          
+          <nav className="hidden md:flex items-center space-x-4">
+            {menuItems.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                smooth={true}
+                duration={500}
+                className="hover:text-green-500 cursor-pointer"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
+          </nav>
+          <button className="md:hidden" onClick={toggleMenu}>
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+        {isMenuOpen && (
+          <nav className="md:hidden mt-4">
+            {menuItems.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                smooth={true}
+                duration={500}
+                className="block py-2 hover:text-green-500 cursor-pointer"
+                onClick={toggleMenu}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div className="py-2">
+              <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
+            </div>
+          </nav>
+        )}
+      </header>
+    );
+  };  const Hero = () => (
     <section id="inicio" className="relative h-screen flex items-center justify-center text-white">
       <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://picsum.photos/1920/1080')", filter: "brightness(50%) blur(5px)" }}></div>
       <div className="relative z-10 text-center">
         <h1 className="text-5xl font-bold mb-4">Forest Consulting Group</h1>
-        <p className="text-2xl">Protegiendo el futuro digital</p>
+        <p className="text-2xl">Sembrando seguridad, cosechando resultados</p>
       </div>
     </section>
   );
@@ -41,32 +85,32 @@ const Header = ({ isDark, toggleTheme }) => (
       { title: "Agenda tu cita", description: "Consulta gratuita de 30 minutos", image: "https://picsum.photos/1920/1080?random=2" },
       { title: "Webinar gratuito", description: "Ciberseguridad para empresas", image: "https://picsum.photos/1920/1080?random=3" },
     ];
-
+  
     const [currentIndex, setCurrentIndex] = useState(0);
-
+  
     useEffect(() => {
       const timer = setInterval(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % events.length);
-      }, 5000);
+      }, 10000);
       return () => clearInterval(timer);
     }, []);
-
+  
     const goToSlide = (index) => {
       setCurrentIndex(index);
     };
-
+  
     const goToPrevious = () => {
       const isFirstSlide = currentIndex === 0;
       const newIndex = isFirstSlide ? events.length - 1 : currentIndex - 1;
       setCurrentIndex(newIndex);
     };
-
+  
     const goToNext = () => {
       const isLastSlide = currentIndex === events.length - 1;
       const newIndex = isLastSlide ? 0 : currentIndex + 1;
       setCurrentIndex(newIndex);
     };
-
+  
     return (
       <div className="container mx-auto px-4 my-16">
         <div className="relative h-96 overflow-hidden rounded-lg shadow-md">
@@ -86,21 +130,21 @@ const Header = ({ isDark, toggleTheme }) => (
               </div>
             </motion.div>
           </AnimatePresence>
-
-          {/* Navigation Buttons */}
+  
+          {/* Navigation Buttons - Hidden on mobile */}
           <button
-            className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 text-gray-800 transition-all duration-300"
+            className="hidden md:block absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 text-gray-800 transition-all duration-300"
             onClick={goToPrevious}
           >
             ❮
           </button>
           <button
-            className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 text-gray-800 transition-all duration-300"
+            className="hidden md:block absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 text-gray-800 transition-all duration-300"
             onClick={goToNext}
           >
             ❯
           </button>
-
+  
           {/* Dot indicators */}
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
             {events.map((_, index) => (
@@ -159,47 +203,56 @@ const Header = ({ isDark, toggleTheme }) => (
     </motion.div>
   );
 
-  const Timeline = ({ events }) => (
-    <div className="relative">
-      <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-green-600"></div>
-      {events.map((event, index) => (
-        <motion.div
-          key={index}
-          className={`mb-8 flex justify-between items-center w-full ${
-            index % 2 === 0 ? 'flex-row-reverse' : ''
-          }`}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
-        >
-          <div className="order-1 w-5/12"></div>
+  const Timeline = ({ events }) => {
+    return (
+      <div className="relative container mx-auto px-4">
+        <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-green-600"></div>
+        {events.map((event, index) => (
           <motion.div
-            className="z-20 flex items-center justify-center order-1 bg-green-600 shadow-xl rounded-lg px-3 py-1"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+            key={index}
+            className={`mb-8 flex flex-col md:flex-row justify-between items-center w-full ${
+              index % 2 === 0 ? 'md:flex-row-reverse' : ''
+            }`}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <h1 className="mx-auto font-semibold text-lg text-white">{event.year}</h1>
+            <div className="hidden md:block order-1 w-5/12"></div>
+            <motion.div
+              className="z-20 flex items-center justify-center order-1 bg-green-600 shadow-xl rounded-lg w-8 h-8 md:w-12 md:h-12"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <h1 className="mx-auto font-semibold text-sm md:text-lg text-white">{event.year}</h1>
+            </motion.div>
+            <motion.div
+              className="order-1 bg-gray-100 dark:bg-gray-700 rounded-lg shadow-md w-full md:w-5/12 px-4 py-4 md:px-6 md:py-4 mt-4 md:mt-0 relative group"
+              whileHover={{ scale: 1.03 }}
+            >
+              <h3 className="mb-3 font-bold text-gray-800 dark:text-white text-lg md:text-xl">{event.title}</h3>
+              <p className="text-sm leading-snug tracking-wide text-gray-600 dark:text-gray-300 mb-4">
+                {event.description}
+              </p>
+              <motion.div
+                className="relative w-full h-32 md:h-48 overflow-hidden rounded-lg shadow-lg"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <img
+                  src={event.image}
+                  alt={event.title}
+                  className="w-full h-full object-cover transition-transform duration-300 transform group-hover:scale-110"
+                />
+              </motion.div>
+            </motion.div>
           </motion.div>
-          <motion.div
-            className="order-1 bg-gray-100 dark:bg-gray-700 rounded-lg shadow-md w-5/12 px-6 py-4 relative group"
-            whileHover={{ scale: 1.03 }}
-          >
-            <h3 className="mb-3 font-bold text-gray-800 dark:text-white text-xl">{event.title}</h3>
-            <p className="text-sm leading-snug tracking-wide text-gray-600 dark:text-gray-300">
-              {event.description}
-            </p>
-            <motion.img
-              src={event.image}
-              alt={event.title}
-              className="absolute -top-24 left-1/2 transform -translate-x-1/2 w-48 h-32 object-cover rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              initial={{ opacity: 0, y: 10 }}
-              whileHover={{ opacity: 1, y: 0 }}
-            />
-          </motion.div>
-        </motion.div>
-      ))}
-    </div>
-  );
+        ))}
+      </div>
+    );
+  };
+  
+  
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -371,7 +424,7 @@ const ContactForm = () => {
           <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4">Forest Consulting Group</h3>
-              <p>Protegiendo el futuro digital</p>
+              <p>Sembrando seguridad, cosechando resultados</p>
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-4">Contacto</h4>
