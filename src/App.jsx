@@ -231,58 +231,52 @@ const ContactForm = () => {
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8"
-      >
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nombre</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full px-4 py-2 rounded-md border border-green-600 focus:border-green-700 focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:bg-gray-700 dark:border-green-400 dark:text-white transition duration-300 bg-white text-gray-800"
-            />
-            {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
-          </motion.div>          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full px-4 py-2 rounded-md border border-green-600 focus:border-green-700 focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:bg-gray-700 dark:border-green-400 dark:text-white transition duration-300 bg-white text-gray-800"
-            />
-            {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Mensaje</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="4"
-              value={formData.message}
-              onChange={handleChange}
-              className="w-full px-4 py-2 rounded-md border border-green-600 focus:border-green-700 focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:bg-gray-700 dark:border-green-400 dark:text-white transition duration-300 bg-white text-gray-800"
-            ></textarea>
-            {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
-          </motion.div>
-          <motion.button
-            type="submit"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-300"
-          >
-            Enviar
-          </motion.button>
-        </form>
-      </motion.div>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nombre</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full px-4 py-2 rounded-md border border-green-600 focus:border-green-700 focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:bg-gray-700 dark:border-green-400 dark:text-white transition duration-300 bg-white text-gray-800"
+          />
+          {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
+        </motion.div>
+        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full px-4 py-2 rounded-md border border-green-600 focus:border-green-700 focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:bg-gray-700 dark:border-green-400 dark:text-white transition duration-300 bg-white text-gray-800"
+          />
+          {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
+        </motion.div>
+        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+          <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Mensaje</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            value={formData.message}
+            onChange={handleChange}
+            className="w-full px-4 py-2 rounded-md border border-green-600 focus:border-green-700 focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:bg-gray-700 dark:border-green-400 dark:text-white transition duration-300 bg-white text-gray-800"
+          ></textarea>
+          {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
+        </motion.div>
+        <motion.button
+          type="submit"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-300"
+        >
+          Enviar
+        </motion.button>
+      </form>
       <AnimatePresence>
         {showNotification && (
           <motion.div
@@ -300,8 +294,7 @@ const ContactForm = () => {
       </AnimatePresence>
     </>
   );
-};
-  const App = () => {
+};  const App = () => {
     const [isDark, setIsDark] = useState(false);
     const toggleTheme = () => setIsDark(!isDark);
 
@@ -320,8 +313,10 @@ const ContactForm = () => {
       { year: 2020, title: "Crecimiento Global", description: "Abrimos oficinas en Europa y Asia, expandiendo nuestra presencia internacional.", image: "https://picsum.photos/200/150?random=4" },
       { year: 2023, title: "Liderazgo en IA", description: "Lanzamos nuestra división de Inteligencia Artificial para ciberseguridad.", image: "https://picsum.photos/200/150?random=5" }
     ];
+
     return (
-      <div className={`min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-300`}>
+      <div className={`min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-300 z-10`}>
+        <StarryBackground isDark={isDark} />
         <Header isDark={isDark} toggleTheme={toggleTheme} />
         <Hero />
         <main className="container mx-auto px-4">
@@ -400,26 +395,38 @@ const ContactForm = () => {
         </footer>
       </div>
     );
-  };
-  export default App;
+  };  export default App;
 
 
-const StarryBackground = () => {
+
+const StarryBackground = ({ isDark }) => {
   return (
-    <div className="fixed inset-0 z-0">
-      {[...Array(50)].map((_, i) => (
-        <div
-          key={i}
-          className="star"
-          style={{
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 5}s`,
-          }}
-        ></div>
-      ))}
+    <div className="fixed inset-0 z-0 pointer-events-none">
+      {[...Array(50)].map((_, i) => {
+        const size = Math.random() * 3 + 1;
+        return (
+          <motion.div
+            key={i}
+            className={`star ${isDark ? "dark" : "light"}`}
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              width: `${size}px`,
+              height: `${size}px`,
+              opacity: isDark ? 0.7 : 0.3,
+            }}
+            animate={{
+              opacity: [0.4, 1, 0.4],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: Math.random() * 3 + 2,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          ></motion.div>
+        );
+      })}
     </div>
   );
 };
-
-
