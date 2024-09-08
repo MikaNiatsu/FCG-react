@@ -403,6 +403,7 @@ const StarryBackground = ({ isDark }) => {
     <div className="fixed inset-0 z-0 pointer-events-none">
       {[...Array(50)].map((_, i) => {
         const size = Math.random() * 3 + 1;
+        const delay = Math.random() * 3 + 2;
         return (
           <motion.div
             key={i}
@@ -414,14 +415,25 @@ const StarryBackground = ({ isDark }) => {
               height: `${size}px`,
               opacity: isDark ? 0.7 : 0.3,
             }}
+            initial={{ opacity: 0 }}
             animate={{
-              opacity: [0.4, 1, 0.4],
-              scale: [1, 1.2, 1],
+              opacity: [0, 0.4, 1, 0.4, 0],
             }}
             transition={{
-              duration: Math.random() * 3 + 2,
+              duration: 5,
+              delay,
               repeat: Infinity,
               repeatType: "reverse",
+              onComplete: () => {
+                setTimeout(() => {
+                  const newTop = `${Math.random() * 100}%`;
+                  const newLeft = `${Math.random() * 100}%`;
+                  if (newTop !== this.style.top || newLeft !== this.style.left) {
+                    this.style.top = newTop;
+                    this.style.left = newLeft;
+                  }
+                }, delay * 1000);
+              },
             }}
           ></motion.div>
         );
