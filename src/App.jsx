@@ -428,16 +428,16 @@ const ContactForm = () => {
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-4">Contacto</h4>
-              <p className="flex items-center mb-2"><MapPin size={18} className="mr-2" /> 123 Calle Tecnología, Ciudad</p>
-              <p className="flex items-center mb-2"><Phone size={18} className="mr-2" /> +1 234 567 890</p>
-              <p className="flex items-center"><Mail size={18} className="mr-2" /> info@forestconsulting.com</p>
+              <p className="flex items-center mb-2"><MapPin size={18} className="mr-2" /> Cr 9 No. 53-58 L 108, C.P 11001, Bogota</p>
+              <p className="flex items-center mb-2"><Phone size={18} className="mr-2" /> +57 (601) 2345678 </p>
+              <p className="flex items-center"><Mail size={18} className="mr-2" /> forestconsultinggroup@gmail.com</p>
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-4">Síguenos</h4>
               <div className="flex space-x-4">
-                <a href="#" className="hover:text-green-400"><Facebook size={24} /></a>
-                <a href="#" className="hover:text-green-400"><Twitter size={24} /></a>
-                <a href="#" className="hover:text-green-400"><Linkedin size={24} /></a>
+                <a href="https://www.facebook.com/profile.php?id=61565530713191" className="hover:text-green-400"><Facebook size={24} /></a>
+                <a href="https://co.linkedin.com/in/forest-consulting-group-218879327" className="hover:text-green-400"><Twitter size={24} /></a>
+                <a href="https://x.com/ForestGroup3" className="hover:text-green-400"><Linkedin size={24} /></a>
               </div>
             </div>
           </div>
