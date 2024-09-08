@@ -436,8 +436,8 @@ const ContactForm = () => {
               <h4 className="text-lg font-semibold mb-4">Síguenos</h4>
               <div className="flex space-x-4">
                 <a href="https://www.facebook.com/profile.php?id=61565530713191" className="hover:text-green-400"><Facebook size={24} /></a>
-                <a href="https://co.linkedin.com/in/forest-consulting-group-218879327" className="hover:text-green-400"><Twitter size={24} /></a>
-                <a href="https://x.com/ForestGroup3" className="hover:text-green-400"><Linkedin size={24} /></a>
+                <a href="https://x.com/ForestGroup3" className="hover:text-green-400"><Twitter size={24} /></a>
+                <a href="https://co.linkedin.com/in/forest-consulting-group-218879327" className="hover:text-green-400"><Linkedin size={24} /></a>
               </div>
             </div>
           </div>
