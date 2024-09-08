@@ -10,24 +10,23 @@
   );
 const Header = ({ isDark, toggleTheme }) => (
   <header className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white p-4 sticky top-0 z-50 shadow-md">
-    <div className="container mx-auto flex justify-between items-center">
-      <div className="flex items-center">
-        <img src="/path/to/your/logo.png" alt="Forest Consulting Group Logo" className="h-10 w-auto mr-4" />
-        <h1 className="text-2xl font-bold">Forest Consulting Group</h1>
+    <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
+      <div className="flex items-center mb-4 md:mb-0">
+        <img src="/path/to/your/logo.png" alt="Forest Consulting Group Logo" className="h-8 w-auto mr-2" />
+        <h1 className="text-xl md:text-2xl font-bold">Forest Consulting Group</h1>
       </div>
-      <nav className="flex items-center space-x-4">
-        <Link to="inicio" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer">Inicio</Link>
-        <Link to="quienes-somos" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer">Quiénes Somos</Link>
-        <Link to="servicios" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer">Servicios</Link>
-        <Link to="hitos" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer">Hitos</Link>
-        <Link to="expertos" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer">Expertos</Link>
-        <Link to="contacto" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer">Contacto</Link>
+      <nav className="flex flex-wrap justify-center items-center space-x-2 md:space-x-4">
+        <Link to="inicio" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer text-sm md:text-base">Inicio</Link>
+        <Link to="quienes-somos" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer text-sm md:text-base">Quiénes Somos</Link>
+        <Link to="servicios" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer text-sm md:text-base">Servicios</Link>
+        <Link to="hitos" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer text-sm md:text-base">Hitos</Link>
+        <Link to="expertos" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer text-sm md:text-base">Expertos</Link>
+        <Link to="contacto" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer text-sm md:text-base">Contacto</Link>
         <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
       </nav>
     </div>
   </header>
-)
-   const Hero = () => (
+);   const Hero = () => (
     <section id="inicio" className="relative h-screen flex items-center justify-center text-white">
       <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://picsum.photos/1920/1080')", filter: "brightness(50%) blur(5px)" }}></div>
       <div className="relative z-10 text-center">
