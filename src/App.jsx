@@ -8,43 +8,35 @@
       {isDark ? <Sun className="text-yellow-400" /> : <Moon className="text-gray-700" />}
     </button>
   );
-const Header = ({ isDark, toggleTheme }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-
-  return (
-    <header className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white p-4 sticky top-0 z-50 shadow-md">
-      <div className="container mx-auto flex justify-between items-center">
-        <div className="flex items-center">
-          <img src="/path/to/your/logo.png" alt="Forest Consulting Group Logo" className="h-10 w-auto mr-4" />
-          <h1 className="text-2xl font-bold">Forest Consulting Group</h1>
-        </div>
-        <div className="md:hidden">
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2">
-            {isMenuOpen ? <X /> : <Menu />}
-          </button>
-        </div>
-        <nav className={`md:flex items-center space-x-4 ${isMenuOpen ? 'block' : 'hidden'} absolute md:relative top-full left-0 right-0 bg-white dark:bg-gray-800 md:bg-transparent p-4 md:p-0`}>
-          <Link to="inicio" smooth={true} duration={500} className="block md:inline-block py-2 hover:text-green-500 cursor-pointer">Inicio</Link>
-          <Link to="quienes-somos" smooth={true} duration={500} className="block md:inline-block py-2 hover:text-green-500 cursor-pointer">Quiénes Somos</Link>
-          <Link to="servicios" smooth={true} duration={500} className="block md:inline-block py-2 hover:text-green-500 cursor-pointer">Servicios</Link>
-          <Link to="hitos" smooth={true} duration={500} className="block md:inline-block py-2 hover:text-green-500 cursor-pointer">Hitos</Link>
-          <Link to="expertos" smooth={true} duration={500} className="block md:inline-block py-2 hover:text-green-500 cursor-pointer">Expertos</Link>
-          <Link to="contacto" smooth={true} duration={500} className="block md:inline-block py-2 hover:text-green-500 cursor-pointer">Contacto</Link>
-          <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
-        </nav>
+const Header = ({ isDark, toggleTheme }) => (
+  <header className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white p-4 sticky top-0 z-50 shadow-md">
+    <div className="container mx-auto flex justify-between items-center">
+      <div className="flex items-center">
+        <img src="/path/to/your/logo.png" alt="Forest Consulting Group Logo" className="h-10 w-auto mr-4" />
+        <h1 className="text-2xl font-bold">Forest Consulting Group</h1>
       </div>
-    </header>
-  )
-}
-const Hero = () => (
-  <section id="inicio" className="relative h-screen flex items-center justify-center text-white">
-    <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://picsum.photos/1920/1080')", filter: "brightness(50%) blur(5px)" }}></div>
-    <div className="relative z-10 text-center px-4">
-      <h1 className="text-4xl md:text-5xl font-bold mb-4">Forest Consulting Group</h1>
-      <p className="text-xl md:text-2xl">Protegiendo el futuro digital</p>
+      <nav className="flex items-center space-x-4">
+        <Link to="inicio" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer">Inicio</Link>
+        <Link to="quienes-somos" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer">Quiénes Somos</Link>
+        <Link to="servicios" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer">Servicios</Link>
+        <Link to="hitos" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer">Hitos</Link>
+        <Link to="expertos" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer">Expertos</Link>
+        <Link to="contacto" smooth={true} duration={500} className="hover:text-green-500 cursor-pointer">Contacto</Link>
+        <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
+      </nav>
     </div>
-  </section>
-);  const Carousel = () => {
+  </header>
+)
+   const Hero = () => (
+    <section id="inicio" className="relative h-screen flex items-center justify-center text-white">
+      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://picsum.photos/1920/1080')", filter: "brightness(50%) blur(5px)" }}></div>
+      <div className="relative z-10 text-center">
+        <h1 className="text-5xl font-bold mb-4">Forest Consulting Group</h1>
+        <p className="text-2xl">Protegiendo el futuro digital</p>
+      </div>
+    </section>
+  );
+  const Carousel = () => {
     const events = [
       { title: "Visítanos", description: "Conoce nuestras instalaciones", image: "https://picsum.photos/1920/1080?random=1" },
       { title: "Agenda tu cita", description: "Consulta gratuita de 30 minutos", image: "https://picsum.photos/1920/1080?random=2" },
@@ -155,10 +147,10 @@ const Hero = () => (
 
   const ServiceCard = ({ title, description, icon }) => (
     <motion.div
-      className="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow-md flex flex-col md:flex-row items-start"
+      className="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow-md flex items-start"
       whileHover={{ scale: 1.03 }}
     >
-      <div className="mb-4 md:mb-0 md:mr-4 text-green-600 dark:text-green-400">
+      <div className="mr-4 text-green-600 dark:text-green-400">
         {icon}
       </div>
       <div>
@@ -167,6 +159,7 @@ const Hero = () => (
       </div>
     </motion.div>
   );
+
   const Timeline = ({ events }) => (
     <div className="relative">
       <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-green-600"></div>
@@ -327,63 +320,61 @@ const ContactForm = () => {
       { year: 2020, title: "Crecimiento Global", description: "Abrimos oficinas en Europa y Asia, expandiendo nuestra presencia internacional.", image: "https://picsum.photos/200/150?random=4" },
       { year: 2023, title: "Liderazgo en IA", description: "Lanzamos nuestra división de Inteligencia Artificial para ciberseguridad.", image: "https://picsum.photos/200/150?random=5" }
     ];
-
     return (
-      <div className={`min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-300 relative overflow-hidden`}>
-        <StarryBackground />
+      <div className={`min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-300`}>
         <Header isDark={isDark} toggleTheme={toggleTheme} />
-        <div className="relative z-10">
-          <Hero />
+        <Hero />
+        <main className="container mx-auto px-4">
+          <Section id="quienes-somos" title="Quiénes Somos" icon={<Shield className="text-green-600" size={24} />}>
+            <p className="text-lg">Forest Consulting Group es líder en consultoría de TI y ciberseguridad. Nos dedicamos a proteger y optimizar la infraestructura digital de nuestros clientes, ofreciendo soluciones innovadoras y seguras en un mundo tecnológico en constante evolución.</p>
+          </Section>
           <Carousel />
-          <main className="container mx-auto px-4">
-            <Section id="quienes-somos" title="Quiénes Somos" icon={<Shield className="text-green-600" size={24} />}>
-              <p className="text-lg">Forest Consulting Group es líder en consultoría de TI y ciberseguridad. Nos dedicamos a proteger y optimizar la infraestructura digital de nuestros clientes, ofreciendo soluciones innovadoras y seguras en un mundo tecnológico en constante evolución.</p>
-            </Section>
 
-            <Section id="servicios" title="Nuestros Servicios" icon={<Server className="text-green-600" size={24} />}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <ServiceCard
-                  title="Consultoría en Ciberseguridad"
-                  description="Evaluación de riesgos, implementación de medidas de seguridad y respuesta a incidentes."
-                  icon={<Lock size={24} />}
-                />
-                <ServiceCard
-                  title="Desarrollo de Software Seguro"
-                  description="Diseño y desarrollo de aplicaciones con seguridad integrada desde el inicio."
-                  icon={<Code size={24} />}
-                />
-                <ServiceCard
-                  title="Servicios en la Nube"
-                  description="Migración segura a la nube y optimización de infraestructuras cloud."
-                  icon={<Cloud size={24} />}
-                />
-                <ServiceCard
-                  title="Gestión de Datos"
-                  description="Protección de datos, cumplimiento normativo y análisis de big data."
-                  icon={<Database size={24} />}
-                />
-              </div>
-            </Section>
+          <Section id="servicios" title="Nuestros Servicios" icon={<Server className="text-green-600" size={24} />}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <ServiceCard
+                title="Consultoría en Ciberseguridad"
+                description="Evaluación de riesgos, implementación de medidas de seguridad y respuesta a incidentes."
+                icon={<Lock size={24} />}
+              />
+              <ServiceCard
+                title="Desarrollo de Software Seguro"
+                description="Diseño y desarrollo de aplicaciones con seguridad integrada desde el inicio."
+                icon={<Code size={24} />}
+              />
+              <ServiceCard
+                title="Servicios en la Nube"
+                description="Migración segura a la nube y optimización de infraestructuras cloud."
+                icon={<Cloud size={24} />}
+              />
+              <ServiceCard
+                title="Gestión de Datos"
+                description="Protección de datos, cumplimiento normativo y análisis de big data."
+                icon={<Database size={24} />}
+              />
+            </div>
+          </Section>
 
-            <Section id="hitos" title="Nuestros Hitos" icon={<Clock className="text-green-600" size={24} />}>
-              <Timeline events={hitos} />
-            </Section>
-            <Section id="expertos" title="Nuestros Expertos" icon={<Users className="text-green-600" size={24} />}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <ExpertCard name="Ana Silva" role="Directora de Ciberseguridad" imageUrl="https://picsum.photos/150/150" />
-                <ExpertCard name="Carlos Robles" role="Arquitecto de Soluciones Cloud" imageUrl="https://picsum.photos/150/150" />
-                <ExpertCard name="Elena Martínez" role="Especialista en Desarrollo Seguro" imageUrl="https://picsum.photos/150/150" />
-                <ExpertCard name="Javier González" role="Especialista en Inteligencia Artificial" imageUrl="https://picsum.photos/150/150" />
-                <ExpertCard name="Laura Fernández" role="Especialista en Gestión de Datos" imageUrl="https://picsum.photos/150/150" />
-              </div>
-            </Section>
-            <Section id="contacto" title="Contacto" icon={<Mail className="text-green-600" size={24} />}>
-              <ContactForm />
-            </Section>
-          </main>
-        </div>
+          <Section id="hitos" title="Nuestros Hitos" icon={<Clock className="text-green-600" size={24} />}>
+            <Timeline events={hitos} />
+          </Section>
+
+          <Section id="expertos" title="Nuestros Expertos" icon={<Users className="text-green-600" size={24} />}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <ExpertCard name="Ana Silva" role="Directora de Ciberseguridad" imageUrl="https://picsum.photos/150/150" />
+              <ExpertCard name="Carlos Robles" role="Arquitecto de Soluciones Cloud" imageUrl="https://picsum.photos/150/150" />
+              <ExpertCard name="Elena Martínez" role="Especialista en Desarrollo Seguro" imageUrl="https://picsum.photos/150/150" />
+              <ExpertCard name="Javier González" role="Especialista en Inteligencia Artificial" imageUrl="https://picsum.photos/150/150" />
+              <ExpertCard name="Laura Fernández" role="Especialista en Gestión de Datos" imageUrl="https://picsum.photos/150/150" />
+            </div>
+          </Section>
+
+          <Section id="contacto" title="Contacto" icon={<Mail className="text-green-600" size={24} />}>
+            <ContactForm />
+          </Section>
+        </main>
         <footer className="bg-gray-800 text-white p-8 mt-16">
-          <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4">Forest Consulting Group</h3>
               <p>Protegiendo el futuro digital</p>
@@ -409,7 +400,8 @@ const ContactForm = () => {
         </footer>
       </div>
     );
-  };  export default App;
+  };
+  export default App;
 
 
 const StarryBackground = () => {
@@ -429,4 +421,5 @@ const StarryBackground = () => {
     </div>
   );
 };
+
 
