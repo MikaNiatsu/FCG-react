@@ -242,7 +242,7 @@
       className="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow-md"
       whileHover={{ scale: 1.05 }}
     >
-      <img src={imageUrl} alt={name} className="w-32 h-32 rounded-full mx-auto mb-4" />
+      <img src={imageUrl} alt={name} className="w-32 h-32 rounded-full mx-auto mb-4 object-cover" />
       <h3 className="text-xl font-semibold text-gray-800 dark:text-white">{name}</h3>
       <p className="text-gray-600 dark:text-gray-300">{role}</p>
     </motion.div>
@@ -363,41 +363,43 @@
 ];
 
   
-  const ReviewsCarousel = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-  
-    useEffect(() => {
-      const timer = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length);
-      }, 10000);
-      return () => clearInterval(timer);
-    }, []);
-  
-    const goToPrevious = () => {
-      setCurrentIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
-    };
-  
-    const goToNext = () => {
+const ReviewsCarousel = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length);
-    };
-  
-    return (
-      <div className="bg-green-50 dark:bg-green-900 py-12">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8 text-green-800 dark:text-green-100">Lo que dicen nuestros clientes</h2>
-          <div className="relative h-[300px] md:h-[250px]"> {/* Ajusta estas alturas según tus necesidades */}
-            <AnimatePresence initial={false}>
+    }, 10000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const goToPrevious = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length);
+  };
+
+  return (
+    <div className="bg-green-50 dark:bg-green-900 py-12">
+      <div className="container mx-auto px-4">
+        <div className="relative max-w-md mx-auto md:max-w-3xl lg:max-w-4xl xl:max-w-5xl">
+          <div className="overflow-hidden">
+            <AnimatePresence initial={false} mode="wait">
               <motion.div
                 key={currentIndex}
-                className="absolute w-full h-full bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 md:p-8"
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.5, ease: 'easeInOut' }}
+                className="w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 md:p-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
               >
                 <Quote className="text-green-500 w-12 h-12 mb-4" />
-                <p className="text-gray-600 dark:text-gray-300 text-lg mb-6">{reviews[currentIndex].comment}</p>
-                <div className="flex items-center absolute bottom-6 left-6">
+                <div className="mb-6 overflow-y-auto max-h-[200px] md:max-h-[150px]">
+                  <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl">{reviews[currentIndex].comment}</p>
+                </div>
+                <div className="flex items-center mt-4">
                   <img src={reviews[currentIndex].image} alt={reviews[currentIndex].company} className="w-12 h-12 rounded-full mr-4" />
                   <div>
                     <p className="font-semibold text-green-700 dark:text-green-300">{reviews[currentIndex].company}</p>
@@ -405,36 +407,38 @@
                 </div>
               </motion.div>
             </AnimatePresence>
-            
-            <button
-              onClick={goToPrevious}
-              className="absolute top-1/2 -left-4 transform -translate-y-1/2 bg-white dark:bg-gray-700 rounded-full p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 hidden md:block"
-            >
-              <ChevronLeft className="text-green-500 w-6 h-6" />
-            </button>
-            <button
-              onClick={goToNext}
-              className="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white dark:bg-gray-700 rounded-full p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 hidden md:block"
-            >
-              <ChevronRight className="text-green-500 w-6 h-6" />
-            </button>
           </div>
           
-          <div className="flex justify-center mt-6">
-            {reviews.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full mx-1 focus:outline-none ${
-                  index === currentIndex ? 'bg-green-500' : 'bg-green-200 dark:bg-green-700'
-                }`}
-              />
-            ))}
-          </div>
+          <button
+            onClick={goToPrevious}
+            className="absolute top-1/2 -left-4 transform -translate-y-1/2 bg-white dark:bg-gray-700 rounded-full p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 hidden md:block"
+          >
+            <ChevronLeft className="text-green-500 w-6 h-6" />
+          </button>
+          <button
+            onClick={goToNext}
+            className="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white dark:bg-gray-700 rounded-full p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 hidden md:block"
+          >
+            <ChevronRight className="text-green-500 w-6 h-6" />
+          </button>
+        </div>
+        
+        <div className="flex justify-center mt-6">
+          {reviews.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-3 h-3 rounded-full mx-1 focus:outline-none ${
+                index === currentIndex ? 'bg-green-500' : 'bg-green-200 dark:bg-green-700'
+              }`}
+            />
+          ))}
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
+
   
 
 const ContactForm = () => {
@@ -584,7 +588,7 @@ const ContactForm = () => {
               />
             </div>
           </Section>
-          <Section id="nuestros-clientes" title="Nuestros Clientes" icon={<Users className="text-green-600" size={24} />}>
+          <Section id="nuestros-clientes" title="Lo que Dicen Nuestros Clientes" icon={<Users className="text-green-600" size={24} />}>
             <ReviewsCarousel />
           </Section>
           <Section id="hitos" title="Nuestros Hitos" icon={<Clock className="text-green-600" size={24} />}>
@@ -593,11 +597,11 @@ const ContactForm = () => {
 
           <Section id="expertos" title="Nuestros Expertos" icon={<Users className="text-green-600" size={24} />}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <ExpertCard name="Ana Silva" role="Directora de Ciberseguridad" imageUrl="https://picsum.photos/150/150" />
-              <ExpertCard name="Carlos Robles" role="Arquitecto de Soluciones Cloud" imageUrl="https://picsum.photos/150/150" />
-              <ExpertCard name="Elena Martínez" role="Especialista en Desarrollo Seguro" imageUrl="https://picsum.photos/150/150" />
-              <ExpertCard name="Javier González" role="Especialista en Inteligencia Artificial" imageUrl="https://picsum.photos/150/150" />
-              <ExpertCard name="Laura Fernández" role="Especialista en Gestión de Datos" imageUrl="https://picsum.photos/150/150" />
+              <ExpertCard name="Sebastian Vega" role="CEO de Forest Consulting Group" imageUrl="\vega.jpg" />
+              <ExpertCard name="David Torres" role="Arquitecto de Soluciones IT" imageUrl="https://picsum.photos/150/150" />
+              <ExpertCard name="Juan Oyola" role="Especialista en Desarrollo Seguro" imageUrl="https://picsum.photos/150/150" />
+              <ExpertCard name="Miguel Linares" role="Directora de Ciberseguridad" imageUrl="https://picsum.photos/150/150" />
+              <ExpertCard name="Johan Silva" role="Especialista en Gestión de Datos" imageUrl="https://picsum.photos/150/150" />
             </div>
           </Section>
 
