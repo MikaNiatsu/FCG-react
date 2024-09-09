@@ -4,6 +4,9 @@
   import { Shield, Users, Server, Clock, Lock, Code, Cloud, Database, Sun, Moon, MapPin, Phone, Mail, Facebook, Twitter, Linkedin } from 'lucide-react';
   import { X } from 'lucide-react';
   import { Menu} from 'lucide-react';
+  import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+  import { Lightbulb } from 'lucide-react';
+
   const ThemeToggle = ({ isDark, toggleTheme }) => (
     <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-200 dark:bg-gray-700">
       {isDark ? <Sun className="text-yellow-400" /> : <Moon className="text-gray-700" />}
@@ -18,6 +21,7 @@
       { to: "inicio", label: "Inicio" },
       { to: "quienes-somos", label: "Quiénes Somos" },
       { to: "servicios", label: "Servicios" },
+      { to: "nuestros-clientes", label: "Clientes" },
       { to: "hitos", label: "Hitos" },
       { to: "expertos", label: "Expertos" },
       { to: "contacto", label: "Contacto" },
@@ -70,7 +74,63 @@
         )}
       </header>
     );
-  };  const Hero = () => (
+  };
+  const AboutUs = () => {
+    return (
+      <div className="bg-white dark:bg-gray-800 py-12">
+        <div className="container mx-auto px-4">
+      
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {[1, 2, 3].map((id) => (
+              <motion.div
+                key={id}
+                className="bg-green-50 dark:bg-green-900 p-6 rounded-lg shadow-md"
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.3 }}
+              >
+                {id === 1 && (
+                  <>
+                    <Shield className="w-12 h-12 text-green-600 dark:text-green-400 mb-4 mx-auto" />
+                    <h3 className="text-xl font-semibold mb-4 text-center text-green-800 dark:text-green-100">
+                      Líderes en Ciberseguridad
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      Somos una empresa líder en consultoría de TI y ciberseguridad, comprometida con la protección y optimización de la infraestructura digital de nuestros clientes. Nuestra misión es brindar soluciones innovadoras y seguras para enfrentar los desafíos de un mundo tecnológico en constante evolución.
+                    </p>
+                  </>
+                )}
+                {id === 2 && (
+                  <>
+                    <Users className="w-12 h-12 text-green-600 dark:text-green-400 mb-4 mx-auto" />
+                    <h3 className="text-xl font-semibold mb-4 text-center text-green-800 dark:text-green-100">
+                      Equipo de Expertos
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      Contamos con un equipo de expertos altamente capacitados que combina conocimientos profundos en tecnologías de la información y estrategias avanzadas de ciberseguridad. Nos especializamos en ofrecer servicios integrales que abarcan desde la evaluación de riesgos y la implementación de medidas de protección hasta la monitorización continua y la respuesta ante incidentes.
+                    </p>
+                  </>
+                )}
+                {id === 3 && (
+                  <>
+                    <Lightbulb className="w-12 h-12 text-green-600 dark:text-green-400 mb-4 mx-auto" />
+                    <h3 className="text-xl font-semibold mb-4 text-center text-green-800 dark:text-green-100">
+                      Soluciones Personalizadas
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      En Forest Consulting Group, entendemos que cada empresa es única y, por lo tanto, personalizamos nuestras soluciones para satisfacer las necesidades específicas de cada cliente. Nuestro enfoque consultivo nos permite trabajar estrechamente con nuestros socios para desarrollar estrategias que no solo protejan sus activos digitales, sino que también optimicen sus operaciones y fomenten la innovación.
+                    </p>
+                  </>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
+  
+    const Hero = () => (
     <section id="inicio" className="relative h-screen flex items-center justify-center text-white">
       <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://picsum.photos/1920/1080')", filter: "brightness(50%) blur(5px)" }}></div>
       <div className="relative z-10 text-center">
@@ -251,7 +311,130 @@
       </div>
     );
   };
+  const reviews = [
+    {
+      id: 1,
+      comment: "Forest Consulting Group nos ayudó a implementar soluciones tecnológicas avanzadas que optimizaron nuestra eficiencia operativa y mejoraron la seguridad de nuestros datos.",
+      company: "AgroColombia Ltda.",
+      image: "/api/placeholder/80/80"
+    },
+    {
+      id: 2,
+      comment: "La asesoría de Forest Consulting Group en ciberseguridad fue crucial para modernizar nuestra infraestructura y cumplir con las regulaciones vigentes.",
+      company: "Industria Cafetera S.A.",
+      image: "/api/placeholder/80/80"
+    },
+    {
+      id: 3,
+      comment: "Gracias a la experiencia de Forest Consulting Group, logramos certificar nuestros sistemas de gestión, abriendo nuevas oportunidades en el mercado digital.",
+      company: "Inversiones Carribean Ltda.",
+      image: "/api/placeholder/80/80"
+    },
+    {
+      id: 4,
+      comment: "El enfoque innovador de Forest Consulting Group en la gestión de datos nos permitió resolver problemas críticos y mejorar nuestra eficiencia operativa.",
+      company: "Construcciones Andinas S.A.",
+      image: "/api/placeholder/80/80"
+    },
+    {
+      id: 5,
+      comment: "Forest Consulting Group realizó un análisis exhaustivo de nuestro sistema de TI, proporcionándonos insights valiosos para optimizar nuestra estrategia tecnológica.",
+      company: "ElectroServicios S.A.",
+      image: "/api/placeholder/80/80"
+    },
+    {
+      id: 6,
+      comment: "La implementación de soluciones de ciberseguridad por parte de Forest Consulting Group nos permitió proteger nuestros activos digitales y prevenir ataques cibernéticos.",
+      company: "Innovación Caribe",
+      image: "/api/placeholder/80/80"
+    },
+    {
+      id: 7,
+      comment: "Forest Consulting Group transformó nuestra estrategia de protección de datos con su experiencia en ciberseguridad, mejorando significativamente nuestra capacidad de respuesta a incidentes.",
+      company: "Servicios del Valle",
+      image: "/api/placeholder/80/80"
+    },
+    {
+      id: 8,
+      comment: "Gracias al asesoramiento de Forest Consulting Group, conseguimos fortalecer nuestras defensas contra amenazas cibernéticas y garantizar la integridad de nuestros sistemas.",
+      company: "Corporación Verde Olivo",
+      image: "/api/placeholder/80/80"
+    }
+];
+
   
+  const ReviewsCarousel = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+  
+    useEffect(() => {
+      const timer = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length);
+      }, 10000);
+      return () => clearInterval(timer);
+    }, []);
+  
+    const goToPrevious = () => {
+      setCurrentIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
+    };
+  
+    const goToNext = () => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length);
+    };
+  
+    return (
+      <div className="bg-green-50 dark:bg-green-900 py-12">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8 text-green-800 dark:text-green-100">Lo que dicen nuestros clientes</h2>
+          <div className="relative h-[300px] md:h-[250px]"> {/* Ajusta estas alturas según tus necesidades */}
+            <AnimatePresence initial={false}>
+              <motion.div
+                key={currentIndex}
+                className="absolute w-full h-full bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 md:p-8"
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
+              >
+                <Quote className="text-green-500 w-12 h-12 mb-4" />
+                <p className="text-gray-600 dark:text-gray-300 text-lg mb-6">{reviews[currentIndex].comment}</p>
+                <div className="flex items-center absolute bottom-6 left-6">
+                  <img src={reviews[currentIndex].image} alt={reviews[currentIndex].company} className="w-12 h-12 rounded-full mr-4" />
+                  <div>
+                    <p className="font-semibold text-green-700 dark:text-green-300">{reviews[currentIndex].company}</p>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+            
+            <button
+              onClick={goToPrevious}
+              className="absolute top-1/2 -left-4 transform -translate-y-1/2 bg-white dark:bg-gray-700 rounded-full p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 hidden md:block"
+            >
+              <ChevronLeft className="text-green-500 w-6 h-6" />
+            </button>
+            <button
+              onClick={goToNext}
+              className="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white dark:bg-gray-700 rounded-full p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 hidden md:block"
+            >
+              <ChevronRight className="text-green-500 w-6 h-6" />
+            </button>
+          </div>
+          
+          <div className="flex justify-center mt-6">
+            {reviews.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-3 h-3 rounded-full mx-1 focus:outline-none ${
+                  index === currentIndex ? 'bg-green-500' : 'bg-green-200 dark:bg-green-700'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
   
 
 const ContactForm = () => {
@@ -373,7 +556,7 @@ const ContactForm = () => {
         <Hero />
         <main className="container mx-auto px-4">
           <Section id="quienes-somos" title="Quiénes Somos" icon={<Shield className="text-green-600" size={24} />}>
-            <p className="text-lg">Forest Consulting Group es líder en consultoría de TI y ciberseguridad. Nos dedicamos a proteger y optimizar la infraestructura digital de nuestros clientes, ofreciendo soluciones innovadoras y seguras en un mundo tecnológico en constante evolución.</p>
+            <AboutUs />
           </Section>
           <Carousel />
 
@@ -392,7 +575,7 @@ const ContactForm = () => {
               <ServiceCard
                 title="Servicios en la Nube"
                 description="Migración segura a la nube y optimización de infraestructuras cloud."
-                icon={<Cloud size={24} />}
+                icon={<Cloud size={24} />} 
               />
               <ServiceCard
                 title="Gestión de Datos"
@@ -401,7 +584,9 @@ const ContactForm = () => {
               />
             </div>
           </Section>
-
+          <Section id="nuestros-clientes" title="Nuestros Clientes" icon={<Users className="text-green-600" size={24} />}>
+            <ReviewsCarousel />
+          </Section>
           <Section id="hitos" title="Nuestros Hitos" icon={<Clock className="text-green-600" size={24} />}>
             <Timeline events={hitos} />
           </Section>
