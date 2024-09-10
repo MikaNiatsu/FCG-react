@@ -597,11 +597,11 @@ const ContactForm = () => {
 
           <Section id="expertos" title="Nuestros Expertos" icon={<Users className="text-green-600" size={24} />}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <ExpertCard name="Sebastian Vega" role="CEO de Forest Consulting Group" imageUrl="\vega.jpg" />
-              <ExpertCard name="David Torres" role="Arquitecto de Soluciones IT" imageUrl="https://picsum.photos/150/150" />
-              <ExpertCard name="Juan Oyola" role="Especialista en Desarrollo Seguro" imageUrl="https://picsum.photos/150/150" />
-              <ExpertCard name="Miguel Linares" role="Directora de Ciberseguridad" imageUrl="https://picsum.photos/150/150" />
-              <ExpertCard name="Johan Silva" role="Especialista en Gestión de Datos" imageUrl="https://picsum.photos/150/150" />
+              <ExpertCard name="Sebastian Vega" role="CEO de Forest Consulting Group" imageUrl="/vega.jpg" />
+              <ExpertCard name="David Torres" role="Arquitecto de Soluciones IT" imageUrl="/david.jpg" />
+              <ExpertCard name="Juan Oyola" role="Especialista en Desarrollo Seguro" imageUrl="/juan.jpg" />
+              <ExpertCard name="Miguel Linares" role="Director de Ciberseguridad" imageUrl="/miguel.jpg" />
+              <ExpertCard name="Johan Silva" role="Especialista en Gestión de Datos" imageUrl="/johan.jpg" />
             </div>
           </Section>
 
