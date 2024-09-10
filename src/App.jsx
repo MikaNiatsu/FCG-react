@@ -132,7 +132,7 @@
   
     const Hero = () => (
     <section id="inicio" className="relative h-screen flex items-center justify-center text-white">
-      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://picsum.photos/1920/1080')", filter: "brightness(50%) blur(5px)" }}></div>
+      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/back.jpg')", filter: "brightness(50%) blur(5px)" }}></div>
       <div className="relative z-10 text-center">
         <h1 className="text-5xl font-bold mb-4">Forest Consulting Group</h1>
         <p className="text-2xl">Sembrando seguridad, cosechando resultados</p>
@@ -141,9 +141,9 @@
   );
   const Carousel = () => {
     const events = [
-      { title: "Visítanos", description: "Conoce nuestras instalaciones", image: "https://picsum.photos/1920/1080?random=1" },
-      { title: "Agenda tu cita", description: "Consulta gratuita de 30 minutos", image: "https://picsum.photos/1920/1080?random=2" },
-      { title: "Webinar gratuito", description: "Ciberseguridad para empresas", image: "https://picsum.photos/1920/1080?random=3" },
+      { title: "Visítanos", description: "Conoce nuestras instalaciones", image: "/carrucel/oficina.webp" },
+      { title: "Agenda tu cita", description: "Consulta gratuita de 30 minutos", image: "/carrucel/agenda.jpg" },
+      { title: "Webinar gratuito", description: "Ciberseguridad para empresas", image: "/carrucel/webinar.jpg" },
     ];
   
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -316,49 +316,49 @@
       id: 1,
       comment: "Forest Consulting Group nos ayudó a implementar soluciones tecnológicas avanzadas que optimizaron nuestra eficiencia operativa y mejoraron la seguridad de nuestros datos.",
       company: "AgroColombia Ltda.",
-      image: "/api/placeholder/80/80"
+      image: "/empresas/AgroColombia.jpg"
     },
     {
       id: 2,
       comment: "La asesoría de Forest Consulting Group en ciberseguridad fue crucial para modernizar nuestra infraestructura y cumplir con las regulaciones vigentes.",
       company: "Industria Cafetera S.A.",
-      image: "/api/placeholder/80/80"
+      image: "/empresas/IndustriaCafetera.jpg"
     },
     {
       id: 3,
       comment: "Gracias a la experiencia de Forest Consulting Group, logramos certificar nuestros sistemas de gestión, abriendo nuevas oportunidades en el mercado digital.",
-      company: "Inversiones Carribean Ltda.",
-      image: "/api/placeholder/80/80"
+      company: "Inversiones Caribean Ltda.",
+      image: "/empresas/InversionesCaribe.jpg"
     },
     {
       id: 4,
       comment: "El enfoque innovador de Forest Consulting Group en la gestión de datos nos permitió resolver problemas críticos y mejorar nuestra eficiencia operativa.",
       company: "Construcciones Andinas S.A.",
-      image: "/api/placeholder/80/80"
+      image: "/empresas/ConstruccionesAndinas.webp"
     },
     {
       id: 5,
       comment: "Forest Consulting Group realizó un análisis exhaustivo de nuestro sistema de TI, proporcionándonos insights valiosos para optimizar nuestra estrategia tecnológica.",
       company: "ElectroServicios S.A.",
-      image: "/api/placeholder/80/80"
+      image: "/empresas/TecnoServiciosSA.png"
     },
     {
       id: 6,
       comment: "La implementación de soluciones de ciberseguridad por parte de Forest Consulting Group nos permitió proteger nuestros activos digitales y prevenir ataques cibernéticos.",
       company: "Innovación Caribe",
-      image: "/api/placeholder/80/80"
+      image: "/empresas/InnovaCaribe.jpg"
     },
     {
       id: 7,
       comment: "Forest Consulting Group transformó nuestra estrategia de protección de datos con su experiencia en ciberseguridad, mejorando significativamente nuestra capacidad de respuesta a incidentes.",
       company: "Servicios del Valle",
-      image: "/api/placeholder/80/80"
+      image: "/empresas/ServiciosDelValle.jpg"
     },
     {
       id: 8,
       comment: "Gracias al asesoramiento de Forest Consulting Group, conseguimos fortalecer nuestras defensas contra amenazas cibernéticas y garantizar la integridad de nuestros sistemas.",
       company: "Corporación Verde Olivo",
-      image: "/api/placeholder/80/80"
+      image: "/empresas/CorporaVerdeOlivo.png"
     }
 ];
 
@@ -546,11 +546,11 @@ const ContactForm = () => {
     }, [isDark]);
 
     const hitos = [
-      { year: 2010, title: "Fundación", description: "Forest Consulting Group se establece como una start-up de ciberseguridad.", image: "https://picsum.photos/200/150?random=1" },
-      { year: 2015, title: "Expansión", description: "Ampliamos nuestros servicios para incluir consultoría en TI y desarrollo de software seguro.", image: "https://picsum.photos/200/150?random=2" },
-      { year: 2018, title: "Reconocimiento", description: "Ganamos el premio 'Innovador en Ciberseguridad del Año'.", image: "https://picsum.photos/200/150?random=3" },
-      { year: 2020, title: "Crecimiento Global", description: "Abrimos oficinas en Europa y Asia, expandiendo nuestra presencia internacional.", image: "https://picsum.photos/200/150?random=4" },
-      { year: 2023, title: "Liderazgo en IA", description: "Lanzamos nuestra división de Inteligencia Artificial para ciberseguridad.", image: "https://picsum.photos/200/150?random=5" }
+      { year: 2010, title: "Fundación", description: "Forest Consulting Group se establece como una start-up de ciberseguridad.", image: "/hitos/ImagenCiberseguridad.webp" },
+      { year: 2015, title: "Expansión", description: "Ampliamos nuestros servicios para incluir consultoría en TI y desarrollo de software seguro.", image: "/hitos/it.jpg" },
+      { year: 2018, title: "Reconocimiento", description: "Ganamos el premio 'Innovador en Ciberseguridad del Año'.", image: "/hitos/ikusi.jpeg" },
+      { year: 2020, title: "Crecimiento Global", description: "Abrimos oficinas en Europa y Asia, expandiendo nuestra presencia internacional.", image: "/hitos/ImagenInstalaciones.jpg" },
+      { year: 2023, title: "Liderazgo en IA", description: "Lanzamos nuestra división de Inteligencia Artificial para ciberseguridad.", image: "/hitos/IA-Hito.jpg" }
     ];
 
     return (
