@@ -1,4 +1,4 @@
-import emailjs from '@emailjs/browser';
+import emailjs from 'emailjs-com';
 
 // Inicializa EmailJS una vez, quizás en tu componente App principal
 export const initEmailJS = () => {
