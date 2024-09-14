@@ -1,39 +1,30 @@
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 
-// Initialize EmailJS once, perhaps in your main App component
+// Inicializa EmailJS una vez, quizás en tu componente App principal
 export const initEmailJS = () => {
-  const userID = import.meta.env.REACT_APP_USER_ID;
-  if (!userID) {
-    console.error('EmailJS User ID is not set');
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+  if (!publicKey) {
+    console.error('EmailJS Public Key is not set');
     return false;
   }
-  emailjs.init(userID);
+  emailjs.init(publicKey);
   return true;
 };
 
 export const sendEmail = (form) => {
-  const serviceID = import.meta.env.REACT_APP_SERVICE_ID;
-  const templateIDConfirm = import.meta.env.REACT_APP_TEMPLATE_ID_CONFIRM;
-  const templateIDTeam = import.meta.env.REACT_APP_TEMPLATE_ID_TEAM;
+  const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const templateIDConfirm = import.meta.env.VITE_EMAILJS_TEMPLATE_ID_CONFIRM;
+  const templateIDTeam = import.meta.env.VITE_EMAILJS_TEMPLATE_ID_TEAM;
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-  if (!serviceID || !templateIDConfirm || !templateIDTeam) {
+  if (!serviceID || !templateIDConfirm || !templateIDTeam || !publicKey) {
     console.error('Missing EmailJS configuration');
     return Promise.reject(new Error('Missing EmailJS configuration'));
   }
 
-  // Create an HTML form from formData
-  const formElement = document.createElement('form');
-  for (const [key, value] of Object.entries(form)) {
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = key;
-    input.value = value;
-    formElement.appendChild(input);
-  }
-
   return Promise.all([
-    emailjs.sendForm(serviceID, templateIDConfirm, formElement),
-    emailjs.sendForm(serviceID, templateIDTeam, formElement)
+    emailjs.send(serviceID, templateIDConfirm, form, publicKey),
+    emailjs.send(serviceID, templateIDTeam, form, publicKey)
   ])
     .then(([result1, result2]) => {
       console.log('Emails sent successfully');
