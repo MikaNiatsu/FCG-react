@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { sendEmail } from '../services/emailService';
@@ -7,6 +7,7 @@ const ContactForm = () => {
   const [formData, setFormData] = useState({ email: '', message: '' });
   const [errors, setErrors] = useState({});
   const [showNotification, setShowNotification] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,13 +24,20 @@ const ContactForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
+      setIsSubmitting(true);
       sendEmail(formData)
         .then(() => {
           setShowNotification(true);
           setTimeout(() => setShowNotification(false), 5000);
           setFormData({ email: '', message: '' });
         })
-        .catch((err) => console.error('Error sending email:', err));
+        .catch((err) => {
+          console.error('Error sending email:', err);
+          // Optionally, show an error notification here
+        })
+        .finally(() => {
+          setIsSubmitting(false);
+        });
     }
   };
 
@@ -64,9 +72,10 @@ const ContactForm = () => {
           type="submit"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-300"
+          className="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={isSubmitting}
         >
-          Send
+          {isSubmitting ? 'Sending...' : 'Send'}
         </motion.button>
       </form>
       <AnimatePresence>
