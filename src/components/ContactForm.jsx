@@ -7,6 +7,8 @@ const ContactForm = () => {
   const [formData, setFormData] = useState({ email: '', message: '' });
   const [errors, setErrors] = useState({});
   const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState('');
+  const [notificationType, setNotificationType] = useState('success');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
@@ -16,6 +18,7 @@ const ContactForm = () => {
   const validateForm = () => {
     const newErrors = {};
     if (!formData.email.trim()) newErrors.email = 'Email is required';
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
     if (!formData.message.trim()) newErrors.message = 'Message is required';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -27,16 +30,20 @@ const ContactForm = () => {
       setIsSubmitting(true);
       sendEmail(formData)
         .then(() => {
+          setNotificationMessage('Message sent successfully!');
+          setNotificationType('success');
           setShowNotification(true);
-          setTimeout(() => setShowNotification(false), 5000);
           setFormData({ email: '', message: '' });
         })
         .catch((err) => {
           console.error('Error sending email:', err);
-          // Optionally, show an error notification here
+          setNotificationMessage('Failed to send message. Please try again.');
+          setNotificationType('error');
+          setShowNotification(true);
         })
         .finally(() => {
           setIsSubmitting(false);
+          setTimeout(() => setShowNotification(false), 5000);
         });
     }
   };
@@ -45,7 +52,7 @@ const ContactForm = () => {
     <>
       <form onSubmit={handleSubmit} className="space-y-6">
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Email</label>
           <input
             type="email"
             id="email"
@@ -84,9 +91,9 @@ const ContactForm = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded-md shadow-lg flex items-center"
+            className={`fixed bottom-4 right-4 ${notificationType === 'success' ? 'bg-green-500' : 'bg-red-500'} text-white p-4 rounded-md shadow-lg flex items-center`}
           >
-            <span>Message sent successfully!</span>
+            <span>{notificationMessage}</span>
             <button onClick={() => setShowNotification(false)} className="ml-2">
               <X size={18} />
             </button>
