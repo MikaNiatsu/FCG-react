@@ -1,23 +1,24 @@
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Facebook, Linkedin, Mail, MapPin, Phone, Server, Shield, Twitter, Users, Code, Cloud, Sun, Moon, Database, Lock } from 'lucide-react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Section from './components/Section';
 import AboutUs from './components/AboutUs';
 import Carousel from './components/Carousel';
-import ServiceCard from './components/ServiceCard';
+import ServicesSection from './components/ServiceSection';
 import ReviewsCarousel from './components/ReviewsCarousel';
 import ContactForm from './components/ContactForm';
-import { Facebook, Linkedin, Mail, MapPin, Phone, Server, Shield, Twitter, Users, Code, Cloud, Sun, Moon, Database, Lock} from 'lucide-react';
-import { useState, useEffect } from 'react';
-import {  motion } from 'framer-motion';
 import { initEmailJS } from './services/emailService';
 
 initEmailJS();
 
 const ThemeToggle = ({ isDark, toggleTheme }) => (
-  <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-200 dark:bg-gray-700">
+  <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors duration-300">
     {isDark ? <Sun className="text-yellow-400" /> : <Moon className="text-gray-700" />}
   </button>
 );
+
 const App = () => {
   const [isDark, setIsDark] = useState(false);
   const toggleTheme = () => setIsDark(!isDark);
@@ -39,45 +40,21 @@ const App = () => {
         <Section id="about-us" title="About Us" icon={<Shield className="text-green-600" size={24} />}>
           <AboutUs />
         </Section>
-        <Carousel />
-
         <Section id="services" title="Our Services" icon={<Server className="text-green-600" size={24} />}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <ServiceCard
-              title="Cybersecurity Consulting"
-              description="Risk assessment, security measures implementation, and incident response."
-              icon={<Lock size={24} />}
-              image={"/hitos/it.jpg"}
-
-            />
-            <ServiceCard
-              title="Secure Software Development Consulting"
-              description="Software security, software governance, and software governance."
-              icon={<Code size={24} />}
-              image={"/hitos/it.jpg"}
-
-            />
-            <ServiceCard
-              title="Cloud Services Consulting"
-              description="Cloud security, cloud governance, and cloud governance."
-              icon={<Cloud size={24} />} 
-              image={"/hitos/it.jpg"}
-
-            />
-            <ServiceCard
-              title="Data Management Consulting"
-              description="Data security, data governance, and data governance."
-              icon={<Database size={24} />}
-              image={"/hitos/it.jpg"}
-            />
-          </div>
+          <ServicesSection />
         </Section>
         <Section id="clients" title="What Our Clients Say" icon={<Users className="text-green-600" size={24} />}>
           <ReviewsCarousel />
         </Section>
-        
-        <Section id="contact" title="Contact" icon={<Mail className="text-green-600" size={24} />}>
-          <ContactForm />
+        <Section id="contact" title="Get in Touch" icon={<Mail className="text-green-600" size={24} />}>
+          <div className="flex flex-col md:flex-row gap-8">
+            <div className="md:w-1/2">
+              <ContactForm />
+            </div>
+            <div className="md:w-1/2">
+              <Carousel />
+            </div>
+          </div>
         </Section>
       </main>
       <footer className="bg-gray-800 text-white p-8 mt-16">
@@ -85,14 +62,24 @@ const App = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact</h4>
             <p className="flex items-center mb-2"><Phone size={18} className="mr-2" /> +57 (601) 2345678 </p>
-            <p className="flex items-center"><Mail size={18} className="mr-2" /> forestconsultinggroup@gmail.com</p>
+            <p className="flex items-center mb-2"><Mail size={18} className="mr-2" /> forestconsultinggroup@gmail.com</p>
+            <p className="flex items-center"><MapPin size={18} className="mr-2" /> Bogotá, Colombia</p>
+          </div>
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <ul className="space-y-2">
+              <li><a href="#about-us" className="hover:text-green-400 transition-colors duration-300">About Us</a></li>
+              <li><a href="#services" className="hover:text-green-400 transition-colors duration-300">Services</a></li>
+              <li><a href="#clients" className="hover:text-green-400 transition-colors duration-300">Testimonials</a></li>
+              <li><a href="#contact" className="hover:text-green-400 transition-colors duration-300">Contact</a></li>
+            </ul>
           </div>
           <div>
             <h4 className="text-lg font-semibold mb-4">Follow Us</h4>
             <div className="flex space-x-4">
-              <a href="https://www.facebook.com/profile.php?id=61565530713191" className="hover:text-green-400"><Facebook size={24} /></a>
-              <a href="https://x.com/ForestGroup3" className="hover:text-green-400"><Twitter size={24} /></a>
-              <a href="https://co.linkedin.com/in/forest-consulting-group-218879327" className="hover:text-green-400"><Linkedin size={24} /></a>
+              <a href="https://www.facebook.com/profile.php?id=61565530713191" className="hover:text-green-400 transition-colors duration-300"><Facebook size={24} /></a>
+              <a href="https://x.com/ForestGroup3" className="hover:text-green-400 transition-colors duration-300"><Twitter size={24} /></a>
+              <a href="https://co.linkedin.com/in/forest-consulting-group-218879327" className="hover:text-green-400 transition-colors duration-300"><Linkedin size={24} /></a>
             </div>
           </div>
         </div>
@@ -102,7 +89,9 @@ const App = () => {
       </footer>
     </div>
   );
-};  export default App;
+};
+
+export default App;
 
 const StarryBackground = ({ isDark }) => {
 return (
