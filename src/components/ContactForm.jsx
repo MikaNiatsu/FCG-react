@@ -4,7 +4,7 @@ import { X } from 'lucide-react';
 import { sendEmail } from '../services/emailService';
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({ from_mail: '', message: '' });
+  const [formData, setFormData] = useState({ from_email: '', message: '' });
   const [errors, setErrors] = useState({});
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState('');
@@ -17,10 +17,10 @@ const ContactForm = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.from_mail || formData.from_mail.trim() === '') {
-      newErrors.from_mail = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.from_mail)) {
-      newErrors.from_mail = 'Email is invalid';
+    if (!formData.from_email || formData.from_email.trim() === '') {
+      newErrors.from_email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.from_email)) {
+      newErrors.from_email = 'Email is invalid';
     }
     
     if (!formData.message || formData.message.trim() === '') {
@@ -40,7 +40,7 @@ const ContactForm = () => {
           setNotificationMessage('Message sent successfully!');
           setNotificationType('success');
           setShowNotification(true);
-          setFormData({ from_mail: '', message: '' });
+          setFormData({ from_email: '', message: '' });
         })
         .catch((err) => {
           console.error('Error sending email:', err);
@@ -59,16 +59,16 @@ const ContactForm = () => {
     <>
       <form onSubmit={handleSubmit} className="space-y-6">
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-          <label htmlFor="from_mail" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Email</label>
+          <label htmlFor="from_email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Email</label>
           <input
             type="email"
-            id="from_mail"
-            name="from_mail"
-            value={formData.from_mail}
+            id="from_email"
+            name="from_email"
+            value={formData.from_email}
             onChange={handleChange}
             className="w-full px-4 py-2 rounded-md border border-green-600 focus:border-green-700 focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:bg-gray-700 dark:border-green-400 dark:text-white transition duration-300 bg-white text-gray-800"
           />
-          {errors.from_mail && <p className="mt-1 text-sm text-red-500">{errors.from_mail}</p>}
+          {errors.from_email && <p className="mt-1 text-sm text-red-500">{errors.from_email}</p>}
         </motion.div>
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
           <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
