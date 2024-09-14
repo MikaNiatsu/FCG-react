@@ -17,7 +17,7 @@ const AboutUs = () => {
       certifications: ["CISSP", "CISM", "PMP"],
       education: "MBA in Technology Management, Stanford University",
       currentFocus: "Leading the global strategy of Forest Consulting Group and expanding our international operations.",
-      linkedin: "https://www.linkedin.com/in/sebastianvega"
+      linkedin: "https://www.linkedin.com/in/sebast%C3%ADan-vega-baquero-157113329/"
     },
     {
       name: "Ing. David Torres",
