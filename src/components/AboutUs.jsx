@@ -27,7 +27,7 @@ const AboutUs = () => {
       certifications: ["TOGAF", "AWS Certified Solutions Architect", "MCSE"],
       education: "Master's in Systems Engineering, MIT",
       currentFocus: "Developing secure hybrid cloud architectures for enterprise clients.",
-      linkedin: "https://www.linkedin.com/in/davidtorres"
+      linkedin: "http://www.linkedin.com/in/david-torres-lara-0a2530138"
     },
     {
       name: "Ing. Juan Oyola",
@@ -37,7 +37,7 @@ const AboutUs = () => {
       certifications: ["CSSLP", "CEH", "OSCP"],
       education: "PhD in Computer Science, University of California, Berkeley",
       currentFocus: "Leading DevSecOps initiatives and security automation in the development lifecycle.",
-      linkedin: "https://www.linkedin.com/in/juanoyola"
+      linkedin: "https://www.linkedin.com/in/juan-esteban-oyola-galindo-46258b267/"
     },
     {
       name: "Ing. Miguel Linares",
@@ -47,7 +47,7 @@ const AboutUs = () => {
       certifications: ["CISO", "CRISC", "CGEIT"],
       education: "Master's in Information Security, University of London",
       currentFocus: "Directing cyber resilience programs and managing the global SOC.",
-      linkedin: "https://www.linkedin.com/in/miguellinares"
+      linkedin: "https://www.linkedin.com/in/miguel-linares-saenz-7a654520b"
     },
     {
       name: "Ing. Johan Silva",
@@ -57,7 +57,7 @@ const AboutUs = () => {
       certifications: ["CDPSE", "CIPP/E", "Google Cloud Certified - Professional Data Engineer"],
       education: "Master's in Data Science, Columbia University",
       currentFocus: "Implementing data governance solutions and ensuring compliance with regulations like GDPR and CCPA.",
-      linkedin: "https://www.linkedin.com/in/johansilva"
+      linkedin: "https://www.linkedin.com/in/johan-felipe-silva-cavieles-8133a9240/"
     }
   ];
 
