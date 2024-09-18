@@ -13,7 +13,7 @@ const Hero = () => (
       <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/back.jpg')", filter: "brightness(50%) blur(5px)" }}></div>
       <div className="relative z-10 text-center">
         <h1 className="text-5xl font-bold mb-4">Forest Consulting Group</h1>
-        <p className="text-2xl">Planting security and harvesting results</p>
+        <p className="text-2xl">Sowing safety and planting results</p>
       </div>
     </motion.section>
   );
